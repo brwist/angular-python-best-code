@@ -4,11 +4,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Frontend command
 
+Run `npm i`.This will install all the dependency packages. 
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Backend command
 
-Run `npm run start` for a dev server. Navigate to `http://localhost:3001/`. The app will automatically reload if you change any of the source files.
+Run `npm i`.This will install all the dependency packages. 
+
+Run `npm run start` for a backend server. This will provide services via `http://localhost:3001/`
 
 ## To run the scripts
 
