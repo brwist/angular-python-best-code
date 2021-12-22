@@ -12,7 +12,7 @@ Run `npm run start` for a dev server. Navigate to `http://localhost:3001/`. The 
 
 ## To run the scripts
 
-Run `python3 database_dump.py <path to sqlite database>`(Run following command inside database_dump folder)
+Run `python3 database_dump.py <path to sqlite database>`(Run following command inside database_dump folder). This will dump the contents of the database into a CSV
 
 
 ## Code scaffolding
