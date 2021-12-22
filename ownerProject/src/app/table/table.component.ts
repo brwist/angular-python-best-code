@@ -1,46 +1,46 @@
-import { Component, OnInit } from '@angular/core';
-import {  FormControl, FormGroup, Validators,FormGroupDirective } from '@angular/forms';
-import {CommonService} from '../shared/commomservice';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CommonService } from '../shared/commomservice';
 
+
+export interface PeriodicElement {
+  name: string;
+  address: string;
+  phone_number: number;
+  createdAt: Date;
+}
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnInit {
 
-
-  ngOnInit(): void {
-  }
-  form = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    address: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    mno: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)])
+export class TableComponent {
+  displayedColumns: string[] = ['name', 'address', 'phone_number', 'createdAt'];
+  dataSource: any;
+  searchp: any;
+  response: any
+  searchform = new FormGroup({
+    search: new FormControl('', [Validators.required, Validators.minLength(3)]),
   });
-  constructor(private commonservice:CommonService, readonly snackBar: MatSnackBar){}
+  constructor(private commonservice: CommonService) {
 
-  get f(){
-    return this.form.controls;
   }
- 
-  submit(){
-    if (this.form.valid) {
-    this.commonservice.addData(this.form.value).subscribe((res)=>{
-      this.snackBar.open("Record Saved !!", "", { duration: 3000 });
-     this.form.reset();
-
-     for (let name in this.form.controls) {
-      this.form.controls[name].setErrors(null);
-   }
-   for (let address in this.form.controls) {
-    this.form.controls[address].setErrors(null);
- }
- for (let mno in this.form.controls) {
-  this.form.controls[mno].setErrors(null);
-}
+  ngOnInit() {
+    this.commonservice.getData(this.searchform.value.search).subscribe((res) => {
+      this.response = res
+      this.dataSource = this.response.data;
     })
   }
+  convertDate(date: Date) {
+    const d = new Date(date)
+    return d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
   }
-}
+  submit(value: any) {
+    this.commonservice.getData(value).subscribe((res) => {
+      this.response = res
+      this.dataSource = this.response.data;
+    })
+  }
 
+}

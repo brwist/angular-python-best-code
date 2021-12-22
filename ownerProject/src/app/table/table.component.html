@@ -1,52 +1,48 @@
-<div class="details_form-wrapper">
-    <div class="details_form-inner">
-        <mat-card>
-            <mat-card-title>Details</mat-card-title>
-            <mat-card-content>
-                <form [formGroup]="form" (ngSubmit)="submit()" formDirective="ngForm"  autocomplete="off">
-                <mat-form-field appearance="standard" >
-                    <mat-label>Name</mat-label>
-                    <input matInput maxlength="15" inputmode="text" placeholder="Enter Name" formControlName="name" #nameInput>
-                    <mat-hint>Mini character 10: {{ nameInput.value.length }}/10</mat-hint>
-                    <mat-error>Name is required</mat-error>
-                    <mat-error **ngIf="(form.get('name')).errors?.minlength">
-                        Please enter more than 10 character
-                    </mat-error>
-                </mat-form-field>
-               
-              <br/>
-          
-                <mat-form-field appearance="standard">
-                    <mat-label>Address:</mat-label>
-                    <input matInput type="text" formControlName="address" placeholder="Enter Address">
-                    <mat-hint>Input the fully qualified email address</mat-hint>
-                    <mat-error>Address is required</mat-error>
-                    <mat-error **ngIf="(form.get('address')).errors?.minlength">
-                        Please enter more than 10 character
-                    </mat-error>
-                </mat-form-field>
-                <br/>
-                
-                <mat-form-field appearance="standard" >
-                  <mat-label>Phone Number</mat-label>
-                  <input pattern="[1-9]{1}[0-9]{9}"  type="number" matInput maxlength="10" inputmode="number" placeholder="Enter Mobile Number" formControlName="mno" #mobileInput>
-                  <mat-hint>Mini character 10: {{ mobileInput.value.length }}/10</mat-hint>
-                  <mat-error>Phone Number is required</mat-error>
-                  <mat-error **ngIf="(form.get('mno')).errors?.minlength">
-                      Please enter more than 10 character
-                  </mat-error>
-              </mat-form-field>
-          
-              <div>
-                <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Submit</button>
-            </div>
-          
-            </form>
-          </mat-card-content>
-          </mat-card>
-         
+<div class="addnewrecords_wrapper">
+  <div class="addnewrecords_inner">
+    <div class="addnewrecords_header">
+      <div class="addnewrecords_searchwrap">
+        <form [formGroup]="searchform" class="example-form" (ngSubmit)="submit($event)">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Search</mat-label>
+            <input matInput placeholder="Place name" [(ngModel)]="searchp" formControlName="search"
+              (input)="submit(searchp)">
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="addnewrecords_btnwrap">
+        <button mat-button color="primary" routerLink="/">Add New Record</button>
+      </div>
     </div>
-    <div class="details_form-bottom">
-        <a routerLink="/record">See All Records  >> </a>
-    </div>    
+    <div class="addnewrecords_content">
+      <table *ngIf="dataSource.length!=0" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name.charAt(0).toUpperCase() +
+            element.name.substr(1).toLowerCase()}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef> Address </th>
+          <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="phone_number">
+          <th mat-header-cell *matHeaderCellDef> Phone Number </th>
+          <td mat-cell *matCellDef="let element"> {{element.phone_number}} </td>
+        </ng-container>
+        <ng-container matColumnDef="createdAt">
+          <th mat-header-cell *matHeaderCellDef> Created At </th>
+          <td mat-cell *matCellDef="let element"> {{convertDate(element.createdAt)}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <div *ngIf="dataSource.length ==0">
+        <h3>No Records Found!!</h3>
+      </div>
+    </div>
+  </div>
 </div>

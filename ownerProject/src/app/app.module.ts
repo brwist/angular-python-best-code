@@ -4,7 +4,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgMaterialModule } from './ng-material/ng-material.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TableComponent } from './table/table.component';
@@ -18,11 +18,13 @@ import { FormComponent } from './form/form.component';
   declarations: [
     AppComponent,
     TableComponent,
-    FormComponent
+    FormComponent,
+    
   ],
   imports: [
     BrowserModule,
     MatTableModule,
+    FormsModule,
     MatSortModule,
     HttpClientModule,
     AppRoutingModule,

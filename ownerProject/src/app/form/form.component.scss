@@ -1,76 +1,52 @@
-
-
-.addnewrecords {
-  &_wrapper {
-    padding: 60px 0;
+.details_form {
+    &-wrapper {
+        padding: 100px 0;
+    }
+    &-inner {
+        max-width: 500px;
+        margin: 0 auto;
+        box-shadow: 0 5px 15px -5px rgb(0 0 0 / 30%);
+        border-radius: 12px;
+        overflow: hidden;
+        // padding: 15px;
+        ::ng-deep {
+            .mat-card {
+                box-shadow: none;
+                padding: 0;
+            }
+            .mat-card-title {
+                background: #3f51b5;
+                padding: 20px 15px;
+                color: #fff;
+                font-size: 20px;
+                text-align: center;
+            }
+            .mat-form-field {
+                width: 100%;
+            }
+            .mat-card-content {
+                padding: 10px 50px 30px;
+            }
+            button {
+                margin-top: 30px;
+            }
+        }
+    }
+    &-bottom {
+        text-align: center;
+        padding: 40px;
+        a{
+            font-size: 16px;
+            color: #3f51b5;
+            text-decoration: none;
+        }
+    }
+}
+mat-form-field {
+    margin-right: 12px;
   }
-  &_inner {
-    width: 100%;
-    max-width: 80%;
-    margin: 0 auto;
-    box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
-    padding: 20px;
-  }
-  &_header {
-    display: flex;
-    // align-items: center;
-    justify-content: space-between;
-    @media (max-width: 767px){
-      flex-direction: column;   
-    }
-    form {
-      width: 100%;
-      max-width: 450px;
-      min-width: 450px;
-      @media (max-width: 767px){
-        min-width: 100%;
-        max-width: 100%;
-      }
-      .mat-form-field {
-        width: 100%;
-        
-      }
-    }
-    button {
-      background: #3f51b5;
-      color: #fff;
-      margin-left: 10px;
-      min-height: 52px;
-
-      &:hover {
-        opacity: 0.8;
-      }
-      @media (max-width: 767px){
-        width: 100%;
-        margin-left: 0;
-        margin-bottom: 15px;
-      }
-
-    }
-  }
-  &_content {
-    padding-top: 30px;
-    border-top: 1px solid #eee;
-    overflow: auto;
-    table {
-      width: 100%;
-      box-shadow: none;
-      border: 1px solid #eee;
-      border-collapse: collapse;
-      th {
-        border: 1px solid #eee;
-        background: #3f51b5;
-        padding: 15px !important;
-        color: #fff;
-        font-size: 16px;
-      }
-      td {
-        border: 1px solid #eee;
-        padding: 15px !important;
-      }
-    }
-    h3 {
-      text-align: center;
-    }
-  }
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
