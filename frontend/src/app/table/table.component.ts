@@ -32,9 +32,9 @@ export class TableComponent {
       this.dataSource = this.response.data;
     })
   }
-  convertDate(date: Date) {
-    const d = new Date(date)
-    return d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
+  convertDate(date: any) {
+    var d = new Date(date)
+    return (d.getFullYear() + "-" +(d.getMonth() + 1) + "-" + d.getDate());
   }
   submit(value: any) {
     this.commonservice.getData(value).subscribe((res) => {
